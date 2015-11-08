@@ -1,0 +1,23 @@
+.root {
+  -fx-base: #282828;
+  -fx-outer-border: #000000;
+  -fx-inner-border: #282828;
+}
+
+.label, .button {
+    -fx-font-size: 13px;
+    -fx-font-family: "Helvetica";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+
+.split-pane-divider {
+   -fx-background-color: transparent;
+   -fx-width:0;
+   -fx-padding:0;
+   -fx-cursor:pointer;
+}
+
+.slider .thumb{
+   -fx-background-color: white;
+}
