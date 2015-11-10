@@ -109,14 +109,26 @@ public class sample {
 
         int w = (int)inputImage.getWidth();
         int h = (int)inputImage.getHeight();
-        int size = (int)this.tileSizeSlider.getValue();
+        int size = (int)Math.pow(this.tileSizeSlider.getValue(), 2);
+        size = 270;
 
         try {
+            int i = 0;
+            int j = 0;
             for(int x=0; x<=w; x+=size) {
+                j = 0;
                 for(int y=0; y<=h; y+=size) {
-                    if(size+x < inputImage.getWidth() && size+y < inputImage.getHeight()) {
+                    if(size+x <= inputImage.getWidth() && size+y <= inputImage.getHeight()) {
                         WritableImage newImage = new WritableImage(reader, x, y, size, size);
-                        String outputFilePath = this.outputDirectoryFile.getAbsolutePath() + "/output_" + this.tileView.file.getName() + "_" + x + "_" + y + ".jpeg";
+
+                        String fileName = this.tileView.file.getName();
+                        int extentionPosition = fileName.lastIndexOf(".");
+                        if (extentionPosition > 0) {
+                            fileName = fileName.substring(0, extentionPosition);
+                        }
+
+
+                        String outputFilePath = this.outputDirectoryFile.getAbsolutePath() + "/pano_" + fileName + "_" + i + "_" + j + ".jpeg";
 
                         File outputFile = new File(outputFilePath);
 
@@ -127,7 +139,9 @@ public class sample {
                         ImageIO.write(imageRGB, "jpg", outputFile);
                         graphics.dispose();
                     }
+                    j++;
                 }
+                i++;
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -141,7 +155,7 @@ public class sample {
         {
             tileSizeValue = newValue;
             this.tileSizeSlider.setValue(tileSizeValue);
-            this.tileSizeValueLabel.setText(tileSizeValue+"");
+            this.tileSizeValueLabel.setText(Math.pow(tileSizeValue, 2)+"");
             this.tileView.tileSize = newValue;
         }
     }

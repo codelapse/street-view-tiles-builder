@@ -23,7 +23,7 @@ public class TileView extends Pane {
 
     private Canvas canvas;
     public File file;
-    public int tileSize = 270;
+    public int tileSize = 10;
 
     public void setFile(File newFile) {
         this.file = newFile;
@@ -65,7 +65,7 @@ public class TileView extends Pane {
 
             context.setLineWidth(1);
 
-            int size = (int)(this.tileSize * ratio);
+            int size = (int)(Math.pow(this.tileSize, 2) * ratio);
             for(int x=0; x<w; x+=size) {
                 context.fillRect(x, offset, 1, h);
 
